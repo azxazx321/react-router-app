@@ -5,11 +5,14 @@ import axios from 'axios';
 
 const TodoForm = () => {
    const queryClient = useQueryClient()
-   const addTodo = useMutation({
+   const addTodo = useMutation<Todo, Error, Todo>({
     mutationFn: (todo: Todo) => 
       axios
       .post<Todo>('https://jsonplaceholder.typicode.com/todos',todo)
       .then( res => res.data),
+      onMutate: () => {
+
+      },
     onSuccess: (savedTodo, newTodo ) => {
       // queryClient.invalidateQueries({
       //   queryKey: ['todos']
@@ -21,6 +24,8 @@ const TodoForm = () => {
   const ref = useRef<HTMLInputElement>(null);
 
   return (
+    <>
+    {addTodo.error && <div className="alert alert-danger">{addTodo.error.message}</div> }
     <form className="row mb-3" onSubmit={e => 
         {e.preventDefault();
           if (ref.current && ref.current.value)
@@ -40,6 +45,7 @@ const TodoForm = () => {
         <button className="btn btn-primary">Add</button>
       </div>
     </form>
+    </>
   );
 };
 
