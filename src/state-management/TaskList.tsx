@@ -1,5 +1,4 @@
-import { useContext, useReducer, useState } from 'react';
-import tasksReducer from './reducers/tasksReducer';
+import { useContext } from 'react';
 import TasksContext from './context/tasksContext';
 
 export interface Task {

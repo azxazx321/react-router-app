@@ -5,15 +5,22 @@ import TaskList from './state-management/TaskList';
 import tasksReducer from './state-management/reducers/tasksReducer';
 import TasksContext from './state-management/context/tasksContext';
 import NavBar from './state-management/NavBar';
+import authReducer from './state-management/reducers/authReducer';
+import AuthContext from './state-management/context/authContext';
+import LoginStatus from './state-management/LoginStatus';
 
 
 function App() {
-  const [tasks, dispatch] = useReducer(tasksReducer, [])
+  const [tasks, tasksDispatch] = useReducer(tasksReducer, [])
+  const [user, authDispatch] = useReducer(authReducer, '')
 
-  return  <TasksContext.Provider value={{tasks, dispatch}}>
-            <NavBar />
-            <TaskList/>
-          </TasksContext.Provider>
+
+  return  <AuthContext.Provider value={{user, dispatch: authDispatch}}>
+            <TasksContext.Provider value={{tasks, dispatch: tasksDispatch}}>
+            <LoginStatus/>
+            <NavBar/>
+            </ TasksContext.Provider>
+          </AuthContext.Provider>
 }
 
 export default App;
