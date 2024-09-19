@@ -1,7 +1,7 @@
 import './App.css';
 import NavBar from './state-management/NavBar';
-import LoginStatus from './state-management/LoginStatus';
-import AuthProvider from './state-management/AuthProvider';
+import { AuthProvider } from './state-management/auth';
+import LoginStatus from './state-management/auth/LoginStatus';
 import { TasksProvider } from './state-management/tasks';
 
 function App() {
