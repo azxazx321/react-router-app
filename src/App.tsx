@@ -8,6 +8,7 @@ import NavBar from './state-management/NavBar';
 import authReducer from './state-management/reducers/authReducer';
 import AuthContext from './state-management/context/authContext';
 import LoginStatus from './state-management/LoginStatus';
+import AuthProvider from './state-management/AuthProvider';
 
 
 function App() {
@@ -15,12 +16,12 @@ function App() {
   const [user, authDispatch] = useReducer(authReducer, '')
 
 
-  return  <AuthContext.Provider value={{user, dispatch: authDispatch}}>
+  return  <AuthProvider>
             <TasksContext.Provider value={{tasks, dispatch: tasksDispatch}}>
-            <LoginStatus/>
-            <NavBar/>
+              <LoginStatus/>
+              <NavBar/>
             </ TasksContext.Provider>
-          </AuthContext.Provider>
+          </AuthProvider>
 }
 
 export default App;
