@@ -5,6 +5,7 @@ import TasksContext from './state-management/context/tasksContext';
 import NavBar from './state-management/NavBar';
 import LoginStatus from './state-management/LoginStatus';
 import AuthProvider from './state-management/AuthProvider';
+import TasksProvider from './state-management/TasksProvider';
 
 
 function App() {
@@ -12,10 +13,10 @@ function App() {
 
 
   return <AuthProvider>
-    <TasksContext.Provider value={{ tasks, dispatch: tasksDispatch }}>
+    <TasksProvider>
       <LoginStatus />
       <NavBar />
-    </ TasksContext.Provider>
+      </TasksProvider>
   </AuthProvider>
 }
 
